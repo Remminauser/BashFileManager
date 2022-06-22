@@ -1,4 +1,19 @@
 #!/bin/bash
+#for encrypting file
+function encfile()
+{
+	read -p "enter filename " FILENAME
+	gpg -c $FILENAME
+	echo "this is what "$(ls)\n" looks like after encyption"
+}
+#for de-encrupting file
+function dencf()
+{
+	read -p "enter filename " FILENAME
+	gpg $FILENAME
+	echo " this is what " $(ls) " looks like after de-encrypting"
+
+}
 #for removing new file
 function rmfile()
 {
@@ -63,6 +78,10 @@ then
 			rmfile ;;
 		"make" || "create" )
 			mkfil ;;
+		"encrypt" )
+			encfile ;;
+		"dencrypt" )
+			dencf ;;
 	esac
 else [ $ACTION == "folder" ];
 	read -p " what would you like to do today ? make , rename or delete folders ? " ACTIONTWO
@@ -73,6 +92,10 @@ else [ $ACTION == "folder" ];
 			rmdire ;;
 		"make" || "create" )
 			mkdire ;;
+		"encrypt" )
+			encfile ;;
+		"dencrypt" )
+			dencf ;;
 	esac
 fi	
 
